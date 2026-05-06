@@ -1,0 +1,50 @@
+import random
+
+def make_matrix(size):
+    mat = []
+    for i in range(size):
+        line = []
+        for j in range(size):
+            num = random.randint(1, size * size * 10 - 1)
+            line.append(num)
+        mat.append(line)
+    return mat
+
+
+def show_matrix(mat):
+    size = len(mat)
+    for i in range(size):
+        for j in range(size):
+            print(f"{mat[i][j]:5}", end=" ")
+        print()
+    print()
+
+
+def change_matrix(mat):
+    size = len(mat)
+
+    new_mat = []
+    for i in range(size):
+        line = []
+        for j in range(size):
+            line.append(mat[j][i])
+        new_mat.append(line)
+
+    return new_mat
+
+
+size = int(input("N 입력 (1 < N <= 5): "))
+
+if 1 < size <= 5:
+    matA = make_matrix(size)
+
+    print("행렬 A")
+    show_matrix(matA)
+
+    trans_mat = change_matrix(matA)
+
+    print("A의 전치 행렬")
+    show_matrix(trans_mat)
+
+else:
+    print("조건에 맞는 N을 입력하세요.")
