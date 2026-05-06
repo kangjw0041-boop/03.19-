@@ -1,0 +1,66 @@
+import random
+
+def make_matrix(size):
+    mat = []
+    for i in range(size):
+        line = []
+        for j in range(size):
+            num = random.randint(1, size * size * 10 - 1)
+            line.append(num)
+        mat.append(line)
+    return mat
+
+
+def show_matrix(mat):
+    size = len(mat)
+    for i in range(size):
+        for j in range(size):
+            print(f"{mat[i][j]:5}", end=" ")
+        print()
+    print()
+
+
+def calc_matrix(mat1, mat2, mat3):
+    size = len(mat1)
+
+    answer = []
+    for i in range(size):
+        line = []
+        for j in range(size):
+            line.append(0)
+        answer.append(line)
+
+    for i in range(size):
+        for j in range(size):
+            for k in range(size):
+                answer[i][j] += mat1[i][k] * mat2[k][j]
+
+    for i in range(size):
+        for j in range(size):
+            answer[i][j] += mat3[i][j]
+
+    return answer
+
+
+size = int(input("N 입력 (1 < N <= 5): "))
+
+if 1 < size <= 5:
+    matA = make_matrix(size)
+    matB = make_matrix(size)
+    matC = make_matrix(size)
+
+    print("행렬 A")
+    show_matrix(matA)
+
+    print("행렬 B")
+    show_matrix(matB)
+
+    print("행렬 C")
+    show_matrix(matC)
+
+    result_mat = calc_matrix(matA, matB, matC)
+    print("A x B + C 결과")
+    show_matrix(result_mat)
+
+else:
+    print("조건에 맞는 N을 입력하세요.")
